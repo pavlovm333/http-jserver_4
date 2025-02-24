@@ -6,7 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="http-jserver_2" />
+        <module name="http-jserver_3" />
         <module name="http-jserver_4.git" />
+        <module name="http-jserver" />
       </profile>
     </annotationProcessing>
   </component>
