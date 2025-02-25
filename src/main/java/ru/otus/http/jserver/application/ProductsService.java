@@ -1,5 +1,6 @@
 package ru.otus.http.jserver.application;
 
+import com.google.gson.Gson;
 import ru.otus.http.jserver.Application;
 import ru.otus.http.jserver.BadRequestExceptionEx;
 
@@ -35,6 +36,7 @@ public class ProductsService {
 
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
+        Gson gson = new Gson();
         int responceBodySize = 0;
         Product product;
         try (Statement statement = connection.createStatement()) {
@@ -45,7 +47,7 @@ public class ProductsService {
                 while (resultSet.next()) {
                     product = new Product(resultSet.getLong("id"), resultSet.getString("title"));
                     products.add (product);
-                    responceBodySize+= product.toString().length();
+                    responceBodySize+= gson.toJson(product).length();
                     if (responceBodySize > Application.limitResponceBody) {
                         throw new BadRequestExceptionEx ("413 Payload Too Large", "Payload Too Large");
                     }
