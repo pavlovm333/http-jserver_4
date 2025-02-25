@@ -99,7 +99,7 @@ public class HttpRequest {
         while (reader.ready()) {
             n = reader.read();
             currentline.append((char) n);
-            requestBodySize+= 2;
+            requestBodySize+= 1;
             if (requestBodySize > Application.limitRequestBody) {
                 errorCause = new BadRequestException(
                         "413 Request Entity Too Larg",
